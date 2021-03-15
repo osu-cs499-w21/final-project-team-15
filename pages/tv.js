@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import DisplayList from './components/queryList';
+import DisplayList from '../components/queryList';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 

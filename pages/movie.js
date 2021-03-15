@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import DisplayList from './components/queryList';
+import DisplayList from '../components/queryList';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
@@ -18,7 +18,7 @@ function SearchMovie(query){
                 const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${NEXT_PUBLIC_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&year=${inputQuery}`, {signal: controller.signal});
                 responseBody = await res.json();
             }catch(e){
-                if( e instanceof DOMException){
+                if(e instanceof DOMException){
                     console.log("HTTP Request aborted!");
                 }
             }

@@ -4,18 +4,20 @@ import DisplayList from './components/queryList';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
-function SearchMovie(query){
-    const [ movieInfo, setMovieInfo ] = useState([]);
+function SearchTV(query){
+    const [ TVInfo, setTVInfo ] = useState([]);
     const [ inputQuery, setInputQuery ] = useState(query || "");
     const router = useRouter();
+    let isSubmit = false;
 
     useEffect(() =>{
         let ignore = false;
         const controller = new AbortController();
-        async function fetchMovieResults(){
+        console.log(inputQuery);
+        async function fetchTVResults(){
             let responseBody = {};
             try{              
-                const res = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${NEXT_PUBLIC_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&year=${inputQuery}`, {signal: controller.signal});
+                const res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${NEXT_PUBLIC_API_KEY}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&first_air_date_year=${inputQuery}`, {signal: controller.signal});
                 responseBody = await res.json();
             }catch(e){
                 if( e instanceof DOMException){
@@ -23,11 +25,11 @@ function SearchMovie(query){
                 }
             }
             if(!ignore){
-                setMovieInfo(responseBody.results || []);
+                setTVInfo(responseBody.results || []);
             }
         }
         if(query){
-            fetchMovieResults();
+            fetchTVResults();
         }
         return () => {
             controller.abort();
@@ -41,16 +43,17 @@ function SearchMovie(query){
             <form onSubmit={(e) => {
                 e.preventDefault();
                 router.push(`?q=${inputQuery}`);
+                isSubmit = true;
             }}>
                 <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021"/>
                 <button type="submit">Search</button>
             </form>
             {(Object.keys(inputQuery).length === 0 && inputQuery.constructor === Object) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}
-            <DisplayList info={movieInfo} movie={true}/>
+            <DisplayList info={TVInfo} movie={false}/>
 
         </div>
     );
 
 }
 
-export default SearchMovie;
+export default SearchTV;

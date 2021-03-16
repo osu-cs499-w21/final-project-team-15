@@ -5,15 +5,17 @@ import Spinner from '../components/Spinner';
 
 function Test() {
   const [ inputYear, setInputYear ] = useState('2020');
-  const [ music, isLoading, error ] = useFetchMusic(inputYear);
+  const [ submitYear, setSubmitYear ] = useState('2020');
+  const [ music, isLoading, error ] = useFetchMusic(submitYear);
   return (
     <>
-      <h1>Year End Hot 100 Songs for {inputYear}</h1>
-      <select value={inputYear} onChange={e => setInputYear(e.target.value)}>
-        <option value="2018">2018</option>
-        <option value="2019">2019</option>
-        <option value="2020">2020</option>
-      </select>
+      <h1>Year End Hot 100 Songs for {submitYear}</h1>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        setSubmitYear(inputYear);
+      }}>
+        <input value={inputYear} onChange={e => setInputYear(e.target.value)} placeholder="2020"/>
+      </form>
       {isLoading
         ? <Spinner />
         : <>

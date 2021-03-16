@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import InfoCard from './infoCard';
 
 function RandomList(props){
+    
     const isMovie = props.movie;
     let test = props.info;
     let object = null;
@@ -15,8 +17,10 @@ function RandomList(props){
 
                     <div>
                         <img src={`https://image.tmdb.org/t/p/original/${object.poster_path}`} alt="poster_icon" height='100px' width='100px' />
+                        
 
                     </div>
+                    <InfoCard id={object.id} isMovie={isMovie}/>
                     
                 
                 </li>

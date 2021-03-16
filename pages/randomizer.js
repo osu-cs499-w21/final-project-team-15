@@ -13,7 +13,6 @@ function getRandomNumber(min, max){
 
 function randomizer() {
     const [ query, setQuery ] = useState("");
-    const [randomNumber, setRandomNumber] = useState(0);
     const [randomIndex, setRandomIndex] = useState(0);
     const [inputQuery, setInputQuery] = useState(query || "");
     const [randomMovie, setRandomMovie] = useState([]);

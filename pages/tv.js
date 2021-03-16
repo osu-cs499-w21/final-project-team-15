@@ -14,8 +14,22 @@ function SearchTV(){
             padding: 0;
             list-style-type: none;
         }
+        .submit{
+            color: snow;
+            background-color: indianred;
+            border-radius: 3px;
+            padding: 5px;
+            border: 1px solid indianred;
+            margin: 5px;
+            cursor: pointer;
+            &:hover{
+                color: indianred;
+                background-color: snow;
+            }
+
+        }
     `;
-    const [ query, setQuery ] = useState("");
+    const [ query, setQuery ] = useState(2021);
     const [ TVInfo, setTVInfo ] = useState([]);
     const [ inputQuery, setInputQuery ] = useState(query || "");
     const router = useRouter();
@@ -59,7 +73,7 @@ function SearchTV(){
                 setQuery(inputQuery);
             }}>
                 <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021"/>
-                <button type="submit">Search</button>
+                <button type="submit" className="submit">Search</button>
             </form>
             {(Object.keys(inputQuery).length === 0 && inputQuery.constructor === Object) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}
             <DisplayList info={TVInfo} movie={false}/>

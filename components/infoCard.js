@@ -1,9 +1,21 @@
+/**@jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
 function InfoCard(props){
+    const styles = css`
+        width: 70%;
+        margin: 0 auto;
+        .list{
+            background-color: IndianRed;
+            border-radius: 20px;
+            margin: 5px;
+        }
+
+    `;
     const [ info, setInfo ] = useState({});
     const [ showInfo, setShowInfo ] = useState(false);
     const id = props.id;
@@ -45,7 +57,7 @@ function InfoCard(props){
         }
     }, [ props.id ]);
     return (
-        <div>
+        <div css={styles}>
             <button id={props.id} onClick={() => {
                             setShowInfo(!showInfo);
                         }}>Show Info</button>

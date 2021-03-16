@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import DisplayList from '../components/queryList';
+import fetch from 'isomorphic-unfetch';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
-function SearchMovie(query){
+function SearchMovie(){
+    const [ query, setQuery ] = useState("");
     const [ movieInfo, setMovieInfo ] = useState([]);
     const [ inputQuery, setInputQuery ] = useState(query || "");
     const router = useRouter();
@@ -41,6 +43,7 @@ function SearchMovie(query){
             <form onSubmit={(e) => {
                 e.preventDefault();
                 router.push(`?q=${inputQuery}`);
+                setQuery(inputQuery);
             }}>
                 <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021"/>
                 <button type="submit">Search</button>

@@ -3,7 +3,7 @@
  */
 
 import React, { useContext } from 'react';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 
 const Bars = styled.div`
   margin: 100px auto;

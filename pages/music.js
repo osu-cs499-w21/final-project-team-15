@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import useFetchMusic from '../hooks/useFetchMusic';
 
+import MusicList from '../components/MusicList';
 import Spinner from '../components/Spinner';
 
-function Test() {
+function Music() {
   const [ inputYear, setInputYear ] = useState('2020');
   const [ submitYear, setSubmitYear ] = useState('2020');
   const [ music, isLoading, error ] = useFetchMusic(submitYear);
@@ -21,11 +22,7 @@ function Test() {
         : <>
             {Object.keys(music).length !== 0
             ? <>
-                <ul>
-                  {music.songs.map(song => (
-                      <p>{song.rank} {song.title} by {song.artist}</p>
-                  ))}
-                </ul>
+                <MusicList songs={music.songs} />
               </>
             : null
             }
@@ -35,4 +32,4 @@ function Test() {
   )
 }
 
-export default Test
+export default Music;

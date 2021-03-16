@@ -16,7 +16,7 @@ function RandomList(props){
                     {isMovie ? <div>Title: {object.original_title}</div> : <div>Title : {object.original_name}</div>}
 
                     <div>
-                        <img src={`https://image.tmdb.org/t/p/original/${object.poster_path}`} alt="poster_icon" height='100px' width='100px' />
+                        <img src={`https://image.tmdb.org/t/p/original/${object.poster_path}`} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}} alt="poster_icon" height='100px' width='100px' />
                         
 
                     </div>

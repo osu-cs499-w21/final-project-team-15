@@ -55,10 +55,10 @@ function InfoCard(props){
                     <div>
                         <ul>
                             <li>Description: {info.overview}</li>
-                            <li>Runtime: {info.runtime}</li>
+                            <li>Runtime: {info.runtime} minutes</li>
                             <li>Production Company: {info.production_companies[0].name}</li>
                             <li>
-                                <img src={`https://image.tmdb.org/t/p/original/${info.production_companies[0].logo_path}`} alt="production_icon" height='100px' width='100px' />
+                                <img src={`https://image.tmdb.org/t/p/original/${info.production_companies[0].logo_path}`} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}} alt="production_icon" height='100px' width='100px' />
                             </li>
                             <li>Genres:
                                 <ul>
@@ -73,10 +73,10 @@ function InfoCard(props){
                     <div>
                         <ul>
                             <li>Description: {info.overview}</li>
-                            <li>Episode Runtime: {info.episode_run_time[0]}</li>
+                            <li>Episode Runtime: {info.episode_run_time[0]} minutes</li>
                             <li>Network: {info.networks[0].name}</li>
                             <li>
-                                <img src={`https://image.tmdb.org/t/p/original/${info.networks[0].logo_path}`} alt="network_icon" height='100px' width='100px' />
+                                <img src={`https://image.tmdb.org/t/p/original/${info.networks[0].logo_path}`} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}} alt="network_icon" height='100px' width='100px' />
                             </li>
                             <li>Number of Seasons: {info.seasons.length}</li>
                             <li>Genres:

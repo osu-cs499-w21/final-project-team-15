@@ -1,3 +1,5 @@
+/**@jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import DisplayList from '../components/queryList';
@@ -6,6 +8,13 @@ import fetch from 'isomorphic-unfetch';
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
 function SearchMovie(){
+    const styles = css`
+        text-align: center;
+        ul{
+            padding: 0;
+            list-style-type: none;
+        }
+    `;
     const [ query, setQuery ] = useState("");
     const [ movieInfo, setMovieInfo ] = useState([]);
     const [ inputQuery, setInputQuery ] = useState(query || "");
@@ -39,7 +48,8 @@ function SearchMovie(){
 
 
     return(
-        <div>
+        <div css={styles}>
+            <h1>Movies</h1>
             <form onSubmit={(e) => {
                 e.preventDefault();
                 router.push(`?q=${inputQuery}`);

@@ -1,3 +1,5 @@
+/**@jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import RandomList from '../components/randomList';
@@ -12,6 +14,33 @@ function getRandomNumber(min, max){
 }
 
 function randomizer() {
+    const styles = css`
+        text-align: center;
+        .random{
+            color: white;
+            background-color: IndianRed;
+            border-radius: 50%;
+            border: 3px solid black;
+            padding: 40px;
+            margin: 5px;
+            cursor: pointer;
+            &:hover{
+                background-color: Ivory;
+                color: IndianRed;
+                border-color: IndianRed;
+            }
+
+        }
+        .checkbox{
+            background-color: #ccc;
+        }
+        ul{
+            padding: 0;
+            list-style-type: none;
+        }
+        
+
+    `;
     const [ query, setQuery ] = useState("");
     const [randomIndex, setRandomIndex] = useState(0);
     const [inputQuery, setInputQuery] = useState(query || "");
@@ -65,8 +94,8 @@ function randomizer() {
         
     }, [query]);
     return (
-        <div>
-            <h1>{inputQuery}</h1>
+        <div css={styles}>
+            <h1>Randomizer</h1>
             <form onSubmit={(e) => {
                 e.preventDefault();
                 
@@ -77,16 +106,18 @@ function randomizer() {
                 setQuery("1");
             }}>
             <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" disabled={yearDisabled}/>
-            <input type="checkbox" onChange={() => {
+            <input type="checkbox" className="checkbox" onChange={() => {
                 setYearDisabled(!yearDisabled);
 
             }} />
-            <input type="submit" />
+            <br></br>
+            <button type="submit" className="random">Randomize</button>
             
             
             
             
             </form>
+            <h2>{inputQuery}</h2>
             <div>
                 <RandomList info={randomTV} movie={false} index={randomIndex}/>
                 <RandomList info={randomMovie} movie={true} index={randomIndex}/>

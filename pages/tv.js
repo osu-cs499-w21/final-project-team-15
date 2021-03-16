@@ -1,3 +1,5 @@
+/**@jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import DisplayList from '../components/queryList';
@@ -6,6 +8,13 @@ import fetch from 'isomorphic-unfetch';
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
 function SearchTV(){
+    const styles = css`
+        text-align: center;
+        ul{
+            padding: 0;
+            list-style-type: none;
+        }
+    `;
     const [ query, setQuery ] = useState("");
     const [ TVInfo, setTVInfo ] = useState([]);
     const [ inputQuery, setInputQuery ] = useState(query || "");
@@ -41,7 +50,8 @@ function SearchTV(){
 
 
     return(
-        <div>
+        <div css={styles}>
+            <h1>TV Shows</h1>
             <form onSubmit={(e) => {
                 e.preventDefault();
                 router.push(`?q=${inputQuery}`);

@@ -37,6 +37,16 @@ function randomizer() {
         .checkbox {
             background-color: #ccc;
         }
+        .number{
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color: #FFD68F;
+            &:disabled{
+                background-color: lightgray;
+                cursor: not-allowed;
+            }
+        }
         ul {
             padding: 0;
             list-style-type: none;
@@ -143,12 +153,12 @@ function randomizer() {
                 setRandomIndexSong(getRandomNumber(0, music.songs.length));
                 
             }}>
-            <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" disabled={yearDisabled} max='2021' min='1980'/><br></br>
+            <input type="number" className="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" disabled={yearDisabled} max='2021' min='1980'/><br></br>
             <input type="checkbox" name="checkbox" className="checkbox" onChange={() => {
                 setYearDisabled(!yearDisabled);
 
             }}/>
-            <label for="checkbox">Randomize Year</label>
+            <label htmlFor="checkbox">Randomize Year</label>
             <br></br><br></br>
             <button type="submit" className="random">Randomize</button>
 

@@ -18,6 +18,12 @@ function SearchTV(){
             padding: 0;
             list-style-type: none;
         }
+        .number{
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+            background-color: #FFD68F;
+        }
         .submit {
             height: 2em;
             width: 2em;
@@ -88,7 +94,7 @@ function SearchTV(){
                 router.push(`?q=${inputQuery}`);
                 setQuery("1");
             }}>
-                <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" max="2021" min="1980"/>
+                <input type="number" className="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" max="2021" min="1980"/>
                 <button type="submit" className="submit">
                     <FontAwesomeIcon icon={faSearch} color={"#484848"} />
                 </button>

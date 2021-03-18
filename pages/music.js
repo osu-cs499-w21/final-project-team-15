@@ -13,6 +13,12 @@ const StyledMusic = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  .number{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #FFD68F;
+  }
   button {
     height: 2em;
     width: 2em;
@@ -46,7 +52,7 @@ function Music() {
         e.preventDefault();
         setSubmitYear(inputYear);
       }}>
-        <input type="number" value={inputYear} onChange={e => setInputYear(e.target.value)} placeholder="2020" max="2020" min="2006"/>
+        <input type="number" className="number" value={inputYear} onChange={e => setInputYear(e.target.value)} placeholder="2020" max="2020" min="2006"/>
         <button className="submit">
             <FontAwesomeIcon icon={faSearch} color={"#484848"} />
         </button>

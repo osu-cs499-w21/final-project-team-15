@@ -65,10 +65,12 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Media Time Travel</title>
+        <title>Rewind</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      
       <div css={styles}>
+      <h1>Rewind</h1>
         <h1 onMouseEnter={() => {setShowDiv(true); setMovieIndex(0)}} onMouseLeave={() => {setShowDiv(false)}}>2021</h1><br></br>
         <h1 className="second" onMouseEnter={() => {setShowDiv(true); setMovieIndex(1)}} onMouseLeave={() => {setShowDiv(false)}}>2020</h1><br></br>
         <h1 className="third" onMouseEnter={() => {setShowDiv(true); setMovieIndex(2)}} onMouseLeave={() => {setShowDiv(false)}}>2019</h1><br></br>

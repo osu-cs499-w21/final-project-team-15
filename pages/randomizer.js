@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import RandomList from '../components/randomList';
 import fetch from 'isomorphic-unfetch';
+import Head from 'next/head'
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
@@ -99,6 +100,10 @@ function randomizer() {
     }, [query, router.query.q]);
     return (
         <div css={styles}>
+            <Head>
+                <title>Rewind Randomizer</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <h1>Randomizer</h1>
             <form onSubmit={(e) => {
                 e.preventDefault();

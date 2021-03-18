@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import DisplayList from '../components/queryList';
 import fetch from 'isomorphic-unfetch';
+import Head from 'next/head'
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
@@ -69,6 +70,10 @@ function SearchTV(){
 
     return(
         <div css={styles}>
+            <Head>
+                <title>TV Show Rewind</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <h1>TV Shows</h1>
             <form onSubmit={(e) => {
                 e.preventDefault();

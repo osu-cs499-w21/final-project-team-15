@@ -66,7 +66,7 @@ function randomizer() {
     const [randomTV, setRandomTV] = useState([]);
     const [yearDisabled, setYearDisabled] = useState(false);
     const [initialPress, setInitialPress] = useState(inputQuery || false);
-    const [ submitYear, setSubmitYear ] = useState('2020');
+    const [ submitYear, setSubmitYear ] = useState(path.slice(-4) || '2020');
     const [ music, isLoading, error ] = useFetchMusic(submitYear);
     const [randomIndexSong, setRandomIndexSong] = useState(0);
     
@@ -88,7 +88,6 @@ function randomizer() {
 
             }catch(e){
                 if( e instanceof DOMException){
-                    console.log("HTTP Request aborted!");
                 }
 
             }
@@ -134,8 +133,7 @@ function randomizer() {
                 if(inputQuery === ""){
                     setInputQuery(2021);
                 }
-                
-                setQuery("1");
+            
                 setInitialPress(true);
 
                 if(inputQuery < 2006){
@@ -148,9 +146,11 @@ function randomizer() {
                 }
                 else{
                     setSubmitYear(inputQuery);
+                    console.log(inputQuery);
 
                 }
                 setRandomIndexSong(getRandomNumber(0, music.songs.length));
+                setQuery("1");
                 
             }}>
             <input type="number" className="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" disabled={yearDisabled} max='2021' min='1980'/><br></br>
@@ -168,7 +168,7 @@ function randomizer() {
                 ? <div>
                     <RandomList info={randomMovie} movie={true} index={randomIndex}/>
                     <RandomList info={randomTV} movie={false} index={randomIndexTV}/>
-                    {music.songs ? <div><b>Music:</b> <MusicSingle song={music.songs[randomIndexSong]} /></div> : <div></div>}
+                    {music.songs && !isLoading ? <div><b>Music:</b> <MusicSingle song={music.songs[randomIndexSong]} /></div> : <div></div>}
                 </div>
                 : null
             }

@@ -17,31 +17,28 @@ function getRandomNumber(min, max){
 function randomizer() {
     const styles = css`
         text-align: center;
-        .random{
-            color: white;
-            background-color: IndianRed;
-            border-radius: 50%;
-            border: 3px solid black;
+        .random {
+            background-color: #51B4B7;
+            border-radius: 5px;
+            border: none;
+            color: #484848;
+            outline: none;
             padding: 40px;
             margin: 5px;
             cursor: pointer;
-            &:hover{
-                background-color: Ivory;
-                color: IndianRed;
-                border-color: IndianRed;
+            &:hover {
+                background-color: #ED2B38;
+                transition: background-color 0.2s;
             }
 
         }
-        .checkbox{
+        .checkbox {
             background-color: #ccc;
         }
-        ul{
+        ul {
             padding: 0;
             list-style-type: none;
         }
-        
-        
-
     `;
     
     const router = useRouter();
@@ -85,8 +82,6 @@ function randomizer() {
 
                 setRandomMovie(movieResponse.results || []);
                 setRandomIndex(getRandomNumber(0, randomMovie.length));
-                
-
             }
 
         }
@@ -133,15 +128,13 @@ function randomizer() {
 
             </form>
             {(inputQuery.length === 0) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}
-            {initialPress ? <div>
-                <RandomList info={randomTV} movie={false} index={randomIndex}/>
-                <RandomList info={randomMovie} movie={true} index={randomIndex}/>
-            </div>
-            : <div></div>}
-            
-            
-            
-
+            {initialPress
+                ? <div>
+                    <RandomList info={randomMovie} movie={true} index={randomIndex}/>
+                    <RandomList info={randomTV} movie={false} index={randomIndex}/>
+                </div>
+                : null
+            }
         </div>
     );
 }

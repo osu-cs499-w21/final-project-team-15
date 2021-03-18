@@ -2,7 +2,7 @@
  * Spinner derived from https://tobiasahlin.com/spinkit/.
  */
 
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 
 const Bars = styled.div`

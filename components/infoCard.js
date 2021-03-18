@@ -1,6 +1,6 @@
 /**@jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
@@ -9,12 +9,19 @@ function InfoCard(props){
     const styles = css`
         width: 70%;
         margin: 0 auto;
-        .list{
-            background-color: IndianRed;
-            border-radius: 20px;
-            margin: 5px;
+        button {
+            height: 2em;
+            background-color: #F26247;
+            border: none;
+            border-radius: 5px;
+            box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+            outline: none;
+            font: 'Century Gothic';
         }
-
+        button:hover {
+            background-color: #ED2B38;
+            transition: background-color 0.2s;
+        }
     `;
     const [ info, setInfo ] = useState({});
     const [ showInfo, setShowInfo ] = useState(false);
@@ -69,7 +76,10 @@ function InfoCard(props){
                             <li>Runtime: {info.runtime} minutes</li>
                             <li>Production Company: {info.production_companies[0].name}</li>
                             <li>
-                                <img src={`https://image.tmdb.org/t/p/original/${info.production_companies[0].logo_path}`} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}} alt="production_icon" height='100px' width='100px' />
+                                <img src={`https://image.tmdb.org/t/p/original/${info.production_companies[0].logo_path}`}
+                                    onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}}
+                                    alt="production_icon" height='100px'
+                                />
                             </li>
                             <li>Genres:
                                 <ul>
@@ -87,7 +97,10 @@ function InfoCard(props){
                             <li>Episode Runtime: {info.episode_run_time[0]} minutes</li>
                             <li>Network: {info.networks[0].name}</li>
                             <li>
-                                <img src={`https://image.tmdb.org/t/p/original/${info.networks[0].logo_path}`} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}} alt="network_icon" height='100px' width='100px' />
+                                <img src={`https://image.tmdb.org/t/p/original/${info.networks[0].logo_path}`}
+                                    onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}}
+                                    alt="network_icon" height='100px'
+                                />
                             </li>
                             <li>Number of Seasons: {info.seasons.length}</li>
                             <li>Genres:

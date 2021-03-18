@@ -1,21 +1,25 @@
 import styled from '@emotion/styled';
 
-const AlbumArt = styled.img`
-  height: 80px;
-  width: 80px;
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+`
+
+const Cover = styled.img`
+  height: 106px;
+  width: 106px;
 `
 
 function MusicItem(props) {
   return (
-    <div>
-      <div>
-        {props.rank}
-      </div>
-      <AlbumArt src={props.cover} />
+    <Card>
+      <Cover src={props.cover} />
       <div>
         {props.title} by {props.artist}
       </div>
-    </div>
+    </Card>
   )
 }
 

@@ -1,8 +1,14 @@
+import styled from '@emotion/styled';
+
 import MusicItem from './MusicItem';
+
+const StyledList = styled.ul`
+  padding-inline-start: 0;
+`
 
 function MusicList(props) {
   return (
-    <ul>
+    <StyledList>
       {props.songs.map(song => (
           <MusicItem
             key={song.title}
@@ -12,7 +18,7 @@ function MusicList(props) {
             cover={song.cover}
           />
       ))}
-    </ul>
+    </StyledList>
   )
 }
 

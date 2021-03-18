@@ -10,7 +10,7 @@ const Bar = styled.header`
   display: flex;
   position: fixed;
   overflow: hidden;
-  background-color: lightgray;
+  background-color: #FFD68F;
   z-index: 2;
 `
 
@@ -19,7 +19,8 @@ const NavItem = styled.li`
   align-items: center;
   float: left;
   &:hover {
-    background-color: darkgray;
+    background-color: #FF9C5A;
+    transition: background-color 0.2s;
   }
   a {
     display: flex;
@@ -51,7 +52,6 @@ function Navbar() {
           <Link href="/">
             <a>
               <img src="https://img.icons8.com/dusk/64/000000/rewind.png"/>
-              <span>Rewind</span>
             </a>
           </Link>
         </NavItem>

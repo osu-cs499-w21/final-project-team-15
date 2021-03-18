@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 
 
@@ -7,11 +7,11 @@ const FooterWrapper = styled.div`
   margin-top: auto;
   display: flex;
   align-items: center;
-  background-color: lightgray;
-  color: #373737;
+  background-color: #FFD68F;
   
   a {
     margin: 15px;
+    color: #51b4b7;
   }
 `
 

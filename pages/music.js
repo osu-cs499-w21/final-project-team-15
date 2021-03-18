@@ -35,7 +35,7 @@ function Music() {
   const [ inputYear, setInputYear ] = useState('2020');
   const [ submitYear, setSubmitYear ] = useState('2020');
   const [ music, isLoading, error ] = useFetchMusic(submitYear);
-  return (
+    return (
     <StyledMusic>
       <Head>
           <title>Music Rewind</title>

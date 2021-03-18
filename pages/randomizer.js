@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import RandomList from '../components/randomList';
 import fetch from 'isomorphic-unfetch';
 import Head from 'next/head'
+import useFetchMusic from '../hooks/useFetchMusic';
+import MusicSingle from '../components/MusicSingle';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
@@ -43,7 +45,7 @@ function randomizer() {
     
     const router = useRouter();
     let path = router.asPath;
-    if(path === "/randomizer" || path === "/randomizer?="){
+    if(path === "/randomizer" || path === "/randomizer?q="){
         path = "";
     }
     const [ query, setQuery ] = useState("");
@@ -53,6 +55,9 @@ function randomizer() {
     const [randomTV, setRandomTV] = useState([]);
     const [yearDisabled, setYearDisabled] = useState(false);
     const [initialPress, setInitialPress] = useState(inputQuery || false);
+    const [ submitYear, setSubmitYear ] = useState('2020');
+    const [ music, isLoading, error ] = useFetchMusic(submitYear);
+    const [randomIndexSong, setRandomIndexSong] = useState(0);
     
 
     useEffect(() => {
@@ -82,6 +87,8 @@ function randomizer() {
 
                 setRandomMovie(movieResponse.results || []);
                 setRandomIndex(getRandomNumber(0, randomMovie.length));
+
+                
             }
 
         }
@@ -113,25 +120,44 @@ function randomizer() {
                 if(yearDisabled){
                     setInputQuery(getRandomNumber(2000, 2021));
                 }
+                if(inputQuery === ""){
+                    setInputQuery(2021);
+                }
                 
                 setQuery("1");
                 setInitialPress(true);
+
+                if(inputQuery < 2006){
+                    setSubmitYear('2006');
+
+
+                }
+                else if(inputQuery > 2020){
+                    setSubmitYear(2020);
+                }
+                else{
+                    setSubmitYear(inputQuery);
+
+                }
+                setRandomIndexSong(getRandomNumber(0, music.songs.length));
                 
             }}>
-            <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" disabled={yearDisabled}/>
-            <input type="checkbox" className="checkbox" onChange={() => {
+            <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" disabled={yearDisabled} max='2021' min='1980'/><br></br>
+            <input type="checkbox" name="checkbox" className="checkbox" onChange={() => {
                 setYearDisabled(!yearDisabled);
 
-            }} />
-            <br></br>
+            }}/>
+            <label for="checkbox">Randomize Year</label>
+            <br></br><br></br>
             <button type="submit" className="random">Randomize</button>
 
             </form>
-            {(inputQuery.length === 0) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}
+            {path ? <div>{(inputQuery.length === 0) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}</div> : <div><h2>Press Randomize to get random movies, TV shows, and songs</h2></div>}
             {initialPress
                 ? <div>
                     <RandomList info={randomMovie} movie={true} index={randomIndex}/>
                     <RandomList info={randomTV} movie={false} index={randomIndex}/>
+                    {music.songs ? <div><b>Music:</b> <MusicSingle song={music.songs[randomIndexSong]} /></div> : <div></div>}
                 </div>
                 : null
             }

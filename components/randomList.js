@@ -12,7 +12,7 @@ function RandomList(props) {
         render = (<div className="list">
             <ul key={object.id}>
                 <li>
-                    {isMovie ? <div>Movie: {object.original_title}</div> : <div>TV Show : {object.original_name}</div>}
+                    {isMovie ? <div><b>Movie:</b> {object.original_title}</div> : <div><b>TV Show:</b> {object.original_name}</div>}
                     <div>
                         <img src={`https://image.tmdb.org/t/p/original/${object.poster_path}`}
                             onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}}

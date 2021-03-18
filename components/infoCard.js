@@ -72,16 +72,16 @@ function InfoCard(props){
                     {isMovie ? 
                     <div>
                         <ul id={props.id}>
-                            <li>Description: {info.overview}</li>
-                            <li>Runtime: {info.runtime} minutes</li>
-                            <li>Production Company: {info.production_companies[0].name}</li>
+                            <li><b>Description:</b> {info.overview}</li>
+                            <li><b>Runtime:</b> {info.runtime} minutes</li>
+                            <li><b>Production Company:</b> {info.production_companies[0].name}</li>
                             <li>
                                 <img src={`https://image.tmdb.org/t/p/original/${info.production_companies[0].logo_path}`}
                                     onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}}
                                     alt="production_icon" height='100px'
                                 />
                             </li>
-                            <li>Genres:
+                            <li><b>Genres:</b>
                                 <ul>
                                     {info["genres"].map(genre => (
                                         <li key={genre.id}>{genre.name}</li>
@@ -93,17 +93,17 @@ function InfoCard(props){
                     : 
                     <div>
                         <ul>
-                            <li>Description: {info.overview}</li>
-                            <li>Episode Runtime: {info.episode_run_time[0]} minutes</li>
-                            <li>Network: {info.networks[0].name}</li>
+                            <li><b>Description:</b> {info.overview}</li>
+                            <li><b>Episode Runtime:</b> {info.episode_run_time[0]} minutes</li>
+                            <li><b>Network:</b> {info.networks[0].name}</li>
                             <li>
                                 <img src={`https://image.tmdb.org/t/p/original/${info.networks[0].logo_path}`}
                                     onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}}
                                     alt="network_icon" height='100px'
                                 />
                             </li>
-                            <li>Number of Seasons: {info.seasons.length}</li>
-                            <li>Genres:
+                            <li><b>Number of Seasons:</b> {info.seasons.length}</li>
+                            <li><b>Genres:</b>
                                 <ul>
                                     {info["genres"].map(genre => (
                                         <li key={genre.id}>{genre.name}</li>

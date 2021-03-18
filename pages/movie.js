@@ -29,10 +29,15 @@ function SearchMovie(){
 
         }
     `;
-    const [ query, setQuery ] = useState(2021);
-    const [ movieInfo, setMovieInfo ] = useState([]);
-    const [ inputQuery, setInputQuery ] = useState(query || "");
     const router = useRouter();
+    let path = router.asPath;
+    if(path === "/movie"){
+        path = "";
+    }
+    const [ query, setQuery ] = useState("");
+    const [ movieInfo, setMovieInfo ] = useState([]);
+    const [ inputQuery, setInputQuery ] = useState(path.slice(-4) || "");
+    
 
     useEffect(() =>{
         let ignore = false;
@@ -51,14 +56,15 @@ function SearchMovie(){
                 setMovieInfo(responseBody.results || []);
             }
         }
-        if(query){
+        if(router.query){
             fetchMovieResults();
         }
         return () => {
             controller.abort();
             ignore = true;
+            setQuery("0");
         }
-    }, [query]);
+    }, [query, router.query.q]);
 
 
     return(
@@ -67,12 +73,12 @@ function SearchMovie(){
             <form onSubmit={(e) => {
                 e.preventDefault();
                 router.push(`?q=${inputQuery}`);
-                setQuery(inputQuery);
+                setQuery("1");
             }}>
-                <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021"/>
+                <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" max="2021" min="1980"/>
                 <button type="submit" className="submit">Search</button>
             </form>
-            {(Object.keys(inputQuery).length === 0 && inputQuery.constructor === Object) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}
+            {(inputQuery.length === 0) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}
             <DisplayList info={movieInfo} movie={true}/>
 
         </div>

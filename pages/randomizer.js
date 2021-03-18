@@ -81,9 +81,6 @@ function randomizer() {
 
                 setRandomMovie(movieResponse.results || []);
                 setRandomIndex(getRandomNumber(0, randomMovie.length));
-                // console.log(randomTV);
-                // console.log(randomIndex);
-                console.log(inputQuery);
                 
 
             }

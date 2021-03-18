@@ -64,7 +64,7 @@ function InfoCard(props){
                 <div>
                     {isMovie ? 
                     <div>
-                        <ul>
+                        <ul id={props.id}>
                             <li>Description: {info.overview}</li>
                             <li>Runtime: {info.runtime} minutes</li>
                             <li>Production Company: {info.production_companies[0].name}</li>

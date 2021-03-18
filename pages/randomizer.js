@@ -42,13 +42,17 @@ function randomizer() {
         
 
     `;
+    const router = useRouter();
+    let path = router.asPath;
+    if(path === "/randomizer"){
+        path = "";
+    }
     const [ query, setQuery ] = useState("");
     const [randomIndex, setRandomIndex] = useState(0);
-    const [inputQuery, setInputQuery] = useState(query || "");
+    const [inputQuery, setInputQuery] = useState(path.slice(-4) || "");
     const [randomMovie, setRandomMovie] = useState([]);
     const [randomTV, setRandomTV] = useState([]);
     const [yearDisabled, setYearDisabled] = useState(false);
-    const router = useRouter();
 
     useEffect(() => {
         
@@ -79,21 +83,23 @@ function randomizer() {
                 setRandomIndex(getRandomNumber(0, randomMovie.length));
                 // console.log(randomTV);
                 // console.log(randomIndex);
-                setQuery("");
+                console.log(inputQuery);
+                
 
             }
 
         }
-        if(query){
+        if(router.query){
             fetchRandomResults();
             
         }
         return() => {
             controller.abort();
             ignore = true;
+            setQuery("");
         }
         
-    }, [query]);
+    }, [query, router.query.q]);
     return (
         <div css={styles}>
             <h1>Randomizer</h1>

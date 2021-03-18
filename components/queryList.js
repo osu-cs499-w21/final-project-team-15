@@ -24,7 +24,7 @@ function DisplayList(props){
                         {isMovie ? <div><h3>{list.original_title}</h3></div> : <div><h3>{list.original_name}</h3></div>}
 
                         <div>
-                            <img src={`https://image.tmdb.org/t/p/original/${list.poster_path}`} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}} alt="poster_icon" height='100px' width='100px' />
+                            <img src={`https://image.tmdb.org/t/p/original/${list.poster_path}`} onError={(e)=>{e.target.onerror = null; e.target.src="https://www.indiaspora.org/wp-content/uploads/2018/10/image-not-available.jpg"}} alt="poster_icon" height='150px' width='100px' />
 
                         </div>
                         <InfoCard id={list.id} isMovie={isMovie}/>

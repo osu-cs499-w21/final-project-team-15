@@ -45,7 +45,6 @@ function InfoCard(props){
             }
             if(!ignore){
                 setInfo(infoBody || {});
-                console.log(info);
             }
         }
         if( props.id ){

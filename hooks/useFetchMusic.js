@@ -14,6 +14,7 @@ function useFetchMusic(year) {
       let responseBody = {};
       setIsLoading(true);
       setError("");
+      
       try {
         const res = await fetch('/api/billboard', {
           method: 'post',
@@ -38,6 +39,7 @@ function useFetchMusic(year) {
         setIsLoading(false);
       }
     }
+
     if (year) {
       fetchBillboardChart();
     }
@@ -47,7 +49,7 @@ function useFetchMusic(year) {
     };
   }, [ year ]);
 
-  return [ music, isLoading, error ]
+  return [ music, isLoading, error ];
 }
 
 export default useFetchMusic;

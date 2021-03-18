@@ -43,9 +43,10 @@ function randomizer() {
         
 
     `;
+    
     const router = useRouter();
     let path = router.asPath;
-    if(path === "/randomizer"){
+    if(path === "/randomizer" || path === "/randomizer?="){
         path = "";
     }
     const [ query, setQuery ] = useState("");
@@ -54,6 +55,8 @@ function randomizer() {
     const [randomMovie, setRandomMovie] = useState([]);
     const [randomTV, setRandomTV] = useState([]);
     const [yearDisabled, setYearDisabled] = useState(false);
+    const [initialPress, setInitialPress] = useState(inputQuery || false);
+    
 
     useEffect(() => {
         
@@ -88,6 +91,10 @@ function randomizer() {
 
         }
         if(router.query){
+            if(inputQuery){
+                router.push(`?q=${inputQuery}`);
+            }
+            
             fetchRandomResults();
             
         }
@@ -111,8 +118,10 @@ function randomizer() {
                 if(yearDisabled){
                     setInputQuery(getRandomNumber(2000, 2021));
                 }
-                router.push(`?q=${inputQuery}`);
+                
                 setQuery("1");
+                setInitialPress(true);
+                
             }}>
             <input type="number" value={inputQuery} onChange={e => setInputQuery(e.target.value)} placeholder="2021" disabled={yearDisabled}/>
             <input type="checkbox" className="checkbox" onChange={() => {
@@ -121,16 +130,15 @@ function randomizer() {
             }} />
             <br></br>
             <button type="submit" className="random">Randomize</button>
-            
-            
-            
-            
+
             </form>
-            <h2>{inputQuery}</h2>
-            <div>
+            {(inputQuery.length === 0) ? <h2>Year: 2021</h2> : <h2>Year: {inputQuery}</h2>}
+            {initialPress ? <div>
                 <RandomList info={randomTV} movie={false} index={randomIndex}/>
                 <RandomList info={randomMovie} movie={true} index={randomIndex}/>
             </div>
+            : <div></div>}
+            
             
             
 

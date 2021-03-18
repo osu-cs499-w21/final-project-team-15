@@ -70,6 +70,11 @@ function Navbar() {
             <a>TV Shows</a>
           </Link>
         </NavItem>
+        <NavItem>
+          <Link href="/randomizer">
+            <a>Randomizer</a>
+          </Link>
+        </NavItem>
       </Bar>
     </div>
   );

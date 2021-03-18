@@ -50,6 +50,7 @@ function randomizer() {
     }
     const [ query, setQuery ] = useState("");
     const [randomIndex, setRandomIndex] = useState(0);
+    const [randomIndexTV, setRandomIndexTV] = useState(0);
     const [inputQuery, setInputQuery] = useState(path.slice(-4) || "");
     const [randomMovie, setRandomMovie] = useState([]);
     const [randomTV, setRandomTV] = useState([]);
@@ -83,7 +84,7 @@ function randomizer() {
             }
             if(!ignore){
                 setRandomTV(tvResponse.results || []);
-                setRandomIndex(getRandomNumber(0, randomTV.length));
+                setRandomIndexTV(getRandomNumber(0, randomTV.length));
 
                 setRandomMovie(movieResponse.results || []);
                 setRandomIndex(getRandomNumber(0, randomMovie.length));
@@ -156,7 +157,7 @@ function randomizer() {
             {initialPress
                 ? <div>
                     <RandomList info={randomMovie} movie={true} index={randomIndex}/>
-                    <RandomList info={randomTV} movie={false} index={randomIndex}/>
+                    <RandomList info={randomTV} movie={false} index={randomIndexTV}/>
                     {music.songs ? <div><b>Music:</b> <MusicSingle song={music.songs[randomIndexSong]} /></div> : <div></div>}
                 </div>
                 : null

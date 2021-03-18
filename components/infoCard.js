@@ -47,7 +47,6 @@ function InfoCard(props){
                 
             }catch(e){
                 if(e instanceof DOMException){
-                    console.log("HTTP Request aborted!");
                 }
             }
             if(!ignore){

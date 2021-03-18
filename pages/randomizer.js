@@ -7,6 +7,7 @@ import fetch from 'isomorphic-unfetch';
 import Head from 'next/head'
 import useFetchMusic from '../hooks/useFetchMusic';
 import MusicSingle from '../components/MusicSingle';
+import Spinner from '../components/Spinner';
 
 const {NEXT_PUBLIC_API_KEY} = process.env;
 
@@ -146,7 +147,6 @@ function randomizer() {
                 }
                 else{
                     setSubmitYear(inputQuery);
-                    console.log(inputQuery);
 
                 }
                 setRandomIndexSong(getRandomNumber(0, music.songs.length));
@@ -168,7 +168,9 @@ function randomizer() {
                 ? <div>
                     <RandomList info={randomMovie} movie={true} index={randomIndex}/>
                     <RandomList info={randomTV} movie={false} index={randomIndexTV}/>
-                    {music.songs && !isLoading ? <div><b>Music:</b> <MusicSingle song={music.songs[randomIndexSong]} /></div> : <div></div>}
+                    {music.songs ? <div>
+                        {isLoading ? <div><Spinner /></div> : <div><b>Music:</b> <MusicSingle song={music.songs[randomIndexSong]} /></div>}
+                         </div> : <div></div>}
                 </div>
                 : null
             }

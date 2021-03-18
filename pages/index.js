@@ -54,6 +54,12 @@ export default function Home() {
       top: 50px;
       padding: 20px;
       animation: slide-up 1s ease;
+      @media (max-width: 1000px){
+        height: 400px;
+      }
+      @media (max-width: 768px){
+        height: 200px;
+      }
     }
     .movie {
       left: 50px;

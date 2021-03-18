@@ -50,8 +50,8 @@ function Navbar() {
         <NavItem>
           <Link href="/">
             <a>
-              <img src="https://img.icons8.com/bubbles/50/000000/play.png"/>
-              <span>Home</span>
+              <img src="https://img.icons8.com/dusk/64/000000/rewind.png"/>
+              <span>Rewind</span>
             </a>
           </Link>
         </NavItem>

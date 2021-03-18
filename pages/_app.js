@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import styled from '@emotion/styled';
 
+import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
 const Content = styled.div`
@@ -14,8 +15,9 @@ function MyApp({ Component, pageProps }) {
       <Content>
         <Component {...pageProps} />
       </Content>
+      <Footer />
     </>
   );
 }
 
-export default MyApp
+export default MyApp;

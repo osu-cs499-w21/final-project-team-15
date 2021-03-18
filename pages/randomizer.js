@@ -67,7 +67,7 @@ function randomizer() {
     const [randomTV, setRandomTV] = useState([]);
     const [yearDisabled, setYearDisabled] = useState(false);
     const [initialPress, setInitialPress] = useState(inputQuery || false);
-    const [ submitYear, setSubmitYear ] = useState(path.slice(-4) || '2020');
+    const [ submitYear, setSubmitYear ] = useState('2020');
     const [ music, isLoading, error ] = useFetchMusic(submitYear);
     const [randomIndexSong, setRandomIndexSong] = useState(0);
     
